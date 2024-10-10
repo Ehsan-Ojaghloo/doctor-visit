@@ -17,10 +17,11 @@ function Register() {
         if (getEmail.current.value !== "" && getUsername.current.value !== "" && getPassword.current.value !== "") {
 
             try {
-                const res = await axios.post('https://668fe602c0a7969efd9a0985.mockapi.io/users/visit', {
+                const res = await axios.post('http://localhost:3000/users', {
                     email: getEmail.current.value,
                     username: getUsername.current.value,
-                    password: getPassword.current.value
+                    password: getPassword.current.value,
+                    token: Math.floor(Math.random() * 100000000) + 1
                 })
                 console.log(res.data)
             } catch (error) {
@@ -62,7 +63,7 @@ function Register() {
         <div className='register-con'>
             <ToastContainer />
             <div className="register">
-                <h1> Login </h1>
+                <h1> Register </h1>
                 <input type="email" ref={getEmail} placeholder='Email' />
                 <input type="text" ref={getUsername} placeholder='Username' />
                 <input type="password" ref={getPassword} placeholder='Password' />
