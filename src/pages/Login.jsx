@@ -7,43 +7,64 @@ import axios from 'axios'
 
 function Register() {
 
-    const [users, setUsers] = useState([]);
+    const [usersTime, setUsersTime] = useState([]);
     const getUsername = useRef()
     const getPassword = useRef()
 
     const navigate = useNavigate()
 
-    // useEffect(() => {
-
-    // }, [])
-
     const loginUserData = async () => {
         const response = await axios.get(`http://localhost:3000/users`)
-        console.log(response.data)
 
-        const matchUser = users.find(
-            data => data.username === getUsername && data.password === getPassword
+        const matchUser = response.data.find(
+            data => data.username === getUsername.current.value && data.password === getPassword.current.value
         );
 
         if (matchUser) {
-            console.log('success', matchUser);
+
+            toast.success(`Welcome ${matchUser.username} 😀`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                onClose: () => navigate("/"),
+                transition: Bounce
+            });
+
+            console.log(matchUser)
+
         } else {
-            console.log('No matching user found');
+
+            toast.error('You have no account', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce
+            });
+
         }
     }
-}
 
-return (
-    <div className='register-con'>
-        <ToastContainer />
-        <div className="register">
-            <h1> Login </h1>
-            <input type="text" ref={getUsername} placeholder='Username' />
-            <input type="password" ref={getPassword} placeholder='Password' />
-            <button onClick={regUserData}> Login </button>
+    return (
+        <div className='register-con'>
+            <ToastContainer />
+            <div className="register">
+                <h1> Login </h1>
+                <input type="text" ref={getUsername} placeholder='Username' />
+                <input type="password" ref={getPassword} placeholder='Password' />
+                <button onClick={loginUserData}> Login </button>
+            </div>
         </div>
-    </div>
-)
+    )
 }
 
 export default Register

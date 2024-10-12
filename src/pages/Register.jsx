@@ -28,7 +28,7 @@ function Register() {
                 console.error(error)
             }
 
-            toast.success('Welcome', {
+            toast.success('Your info saved successfully', {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -37,7 +37,7 @@ function Register() {
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-                onClose: () => navigate("/sign"),
+                onClose: () => navigate("/login"),
                 transition: Bounce
             });
 

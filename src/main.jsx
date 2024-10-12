@@ -10,8 +10,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Register />} />
-        <Route path='/sign' element={<App />} />
+        <Route path='/sign' element={<Register />} />
+        <Route path='/' element={<App />} />
         <Route path='/login' element={<Login />} />
       </Routes>
     </BrowserRouter>
